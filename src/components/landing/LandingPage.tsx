@@ -5,7 +5,7 @@ import {
   featuredProgramImage,
   featuredProgramImageAlt,
   galleryItems,
-  heroImage,
+  heroImages,
   heroImageAlt,
   importantDates,
   programBlocks,
@@ -55,6 +55,20 @@ function HeroSection() {
         }
 
         const ctx = gsap.context(() => {
+          gsap.set("[data-hero-image-frame='0']", {
+            autoAlpha: 0.55,
+            scale: 1.03,
+            xPercent: 0,
+            yPercent: 0,
+          });
+
+          gsap.set("[data-hero-image-frame='1']", {
+            autoAlpha: 0,
+            scale: 1.03,
+            xPercent: 0,
+            yPercent: 0,
+          });
+
           gsap.fromTo(
             "[data-hero-kicker], [data-hero-title], [data-hero-copy], [data-hero-actions], [data-hero-panel]",
             { autoAlpha: 0, y: 56 },
@@ -67,7 +81,7 @@ function HeroSection() {
             },
           );
 
-          gsap.to("[data-hero-image]", {
+          gsap.to("[data-hero-image-track]", {
             yPercent: 8,
             ease: "none",
             scrollTrigger: {
@@ -77,6 +91,81 @@ function HeroSection() {
               scrub: true,
             },
           });
+
+          gsap
+            .timeline({ repeat: -1 })
+            .add("poseA", 0)
+            .to(
+              "[data-hero-image-frame='0']",
+              {
+                duration: 7,
+                scale: 1.08,
+                xPercent: -1.8,
+                yPercent: -1,
+                ease: "sine.inOut",
+              },
+              "poseA",
+            )
+            .add("toPoseB", 7)
+            .to(
+              "[data-hero-image-frame='1']",
+              {
+                duration: 2,
+                autoAlpha: 0.55,
+                ease: "power2.inOut",
+              },
+              "toPoseB",
+            )
+            .to(
+              "[data-hero-image-frame='0']",
+              {
+                duration: 2,
+                autoAlpha: 0,
+                ease: "power2.inOut",
+              },
+              "toPoseB",
+            )
+            .to(
+              "[data-hero-image-frame='1']",
+              {
+                duration: 7,
+                scale: 1.08,
+                xPercent: 1.8,
+                yPercent: 1,
+                ease: "sine.inOut",
+              },
+              "toPoseB",
+            )
+            .add("toPoseA", 16)
+            .to(
+              "[data-hero-image-frame='0']",
+              {
+                duration: 2,
+                autoAlpha: 0.55,
+                ease: "power2.inOut",
+              },
+              "toPoseA",
+            )
+            .to(
+              "[data-hero-image-frame='1']",
+              {
+                duration: 2,
+                autoAlpha: 0,
+                ease: "power2.inOut",
+              },
+              "toPoseA",
+            )
+            .to(
+              "[data-hero-image-frame='0']",
+              {
+                duration: 7,
+                scale: 1.03,
+                xPercent: 0,
+                yPercent: 0,
+                ease: "sine.inOut",
+              },
+              "toPoseA",
+            );
         }, ref);
 
         cleanup = () => ctx.revert();
@@ -96,13 +185,22 @@ function HeroSection() {
       ref={ref}
       className="relative isolate min-h-screen overflow-hidden px-4 pb-18 pt-30 sm:px-6 sm:pt-36"
     >
-      <img
-        data-hero-image
-        src={heroImage}
-        alt={heroImageAlt}
-        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-55"
-      />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(219,39,119,0.28),transparent_35%),linear-gradient(180deg,rgba(19,19,19,0.14),#131313_72%)]" />
+      <div data-hero-image-track className="absolute inset-0 -z-20">
+        {heroImages.map((src, index) => (
+          <img
+            key={src}
+            data-hero-image-frame={index}
+            src={src}
+            alt={index === 0 ? heroImageAlt : ""}
+            aria-hidden={index === 0 ? undefined : true}
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(219,39,119,0.2),transparent_35%),linear-gradient(180deg,rgba(19,19,19,0.2),#131313_72%)]" />
+      <div className="absolute inset-0 -z-10 bg-black/12" />
       <div className="mx-auto grid w-full max-w-360 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
         <div className="max-w-5xl">
           <p data-hero-kicker className="hype-chip mb-6 inline-flex">
@@ -112,7 +210,7 @@ function HeroSection() {
             data-hero-title
             className="max-w-5xl font-headline text-[clamp(3.8rem,10vw,8.3rem)] leading-[0.86] font-black uppercase tracking-[-0.08em] text-white"
           >
-            IV FEST
+            VI FEST
             <span className="mt-2 block text-[#ffb1c7]">
               Vive Concordia 2026
             </span>
@@ -121,8 +219,8 @@ function HeroSection() {
             data-hero-copy
             className="mt-8 max-w-3xl text-base leading-8 text-white/72 sm:text-lg"
           >
-            El  festival está diseñado como una plataforma de
-            alto impacto escénico y mediático para posicionar la Concordia como centro 
+            El festival está diseñado como una plataforma de alto impacto
+            escénico y mediático para posicionar la Concordia como centro
             cultural nacional e internacional en Ecuador.
           </p>
           <div data-hero-actions className="mt-10 flex flex-wrap gap-4">
@@ -137,9 +235,6 @@ function HeroSection() {
 
         <div data-hero-panel className="lg:justify-self-end">
           <div className="glass-panel max-w-md p-6 sm:p-8">
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.26em] text-white/46">
-              Valor para sponsors
-            </p>
             <div className="space-y-5">
               {[
                 ["03", "noches de show principal"],

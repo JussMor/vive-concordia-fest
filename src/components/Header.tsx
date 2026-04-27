@@ -11,7 +11,7 @@ export default function Header() {
             className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-white no-underline sm:text-xs"
           >
             <span className="h-2 w-2 rounded-full bg-[linear-gradient(135deg,#ffb1c7,#db2777)] shadow-[0_0_18px_rgba(219,39,119,0.7)]" />
-            IV FEST · VIVE CONCORDIA 2026
+            VI FEST · VIVE CONCORDIA 2026
           </Link>
         </h2>
 

@@ -1,4 +1,9 @@
-export const heroImage = "/hero-main-show-bg.png";
+export const heroImages = [
+  "/hero-main-show-bg-1.png",
+  "/hero-main-show-bg-2.png",
+];
+
+export const heroImage = heroImages[0];
 
 export const storyImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAg45WfMlKVqbOQXgk-Qp1jG_gEJqzwk7gHpq8Lxh2iWPloRThNrhDl5PA-s7t9fBZpyoK5LVXwCS0nOJ0FlQbzdqsoALpw_rO9fo1yfCp1mJv3oSj2kvlyp_FHLyaqk0yCh50kmS1WLRDuKZNTa15oPB9NM_3_kVnuKHa1TFhTikrqALMBraPEU8nuO-lbNdTfhsUrd8fg_qhuMIuJQnglJIJ5XUDtawzoOlLMGTKuIVluVZejJfGMUfAoN8GF1C3qddsE-yT5nfQ";
