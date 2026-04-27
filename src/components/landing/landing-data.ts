@@ -1,6 +1,6 @@
 export const heroImages = [
-  "/hero-main-show-bg-1.png",
   "/hero-main-show-bg-2.png",
+  "/hero-main-show-bg-1.png",
 ];
 
 export const heroImage = heroImages[0];
