@@ -5,8 +5,8 @@ import {
   featuredProgramImage,
   featuredProgramImageAlt,
   galleryItems,
-  heroImages,
   heroImageAlt,
+  heroImages,
   importantDates,
   programBlocks,
   requirements,
@@ -536,13 +536,24 @@ function SponsorContactSection() {
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {sponsors.map((sponsor) => (
-              <article key={sponsor} className="surface-card p-6">
+              <article key={sponsor.name} className="surface-card p-6">
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-[#ffb1c7]">
                   Aliado
                 </p>
-                <p className="mt-3 text-sm leading-7 text-white/68">
-                  {sponsor}
-                </p>
+                {sponsor.href ? (
+                  <a
+                    href={sponsor.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-block text-sm leading-7 text-white/80 underline decoration-white/30 underline-offset-4 transition hover:text-white"
+                  >
+                    {sponsor.name}
+                  </a>
+                ) : (
+                  <p className="mt-3 text-sm leading-7 text-white/68">
+                    {sponsor.name}
+                  </p>
+                )}
               </article>
             ))}
           </div>

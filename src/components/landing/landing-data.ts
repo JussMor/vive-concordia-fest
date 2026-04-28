@@ -1,3 +1,5 @@
+import { i } from "node_modules/vite/dist/node/chunks/moduleRunnerTransport";
+
 export const heroImages = [
   "/hero-main-show-bg-2.png",
   "/hero-main-show-bg-1.png",
@@ -116,8 +118,27 @@ export const galleryItems = [
 ];
 
 export const sponsors = [
-  "Corporación Cultural Sariri",
-  "Gobierno Autónomo Descentralizado de La Concordia",
-  "Aliados culturales del Ecuador",
-  "Red de agrupaciones latinoamericanas",
+  {
+    name: "Corporación Cultural Sariri",
+    href: "https://www.grupoculturalsariri.com",
+  },
+  {
+    name: "Gobierno Autónomo Descentralizado de La Concordia",
+    href: "https://www.laconcordia.gob.ec/laconcordia/",
+  },
+  {
+    name: "Casa de la Cultura Ecuatoriana Núcleo de Santo Domingo de los Tsáchilas",
+    href: "https://web.casadelacultura.gob.ec",
+  },
+  {
+    name: "Red de agrupaciones latinoamericanas",
+  },
+  {
+    name: "Panelex Center",
+    href: "https://www.panelexcenter.com/",
+  },
+  {
+    name: "Everfaz",
+    href: "https://www.everfaz.com/",
+  },
 ];
