@@ -587,7 +587,7 @@ export default function LandingPage() {
       <AudienceSection />
       <ProgramSection />
       <SponsorBenefitsSection />
-      <DatesSection />
+      {/* <DatesSection /> */}
       <GallerySection />
       <SponsorContactSection />
     </main>
