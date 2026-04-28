@@ -1,5 +1,3 @@
-import { i } from "node_modules/vite/dist/node/chunks/moduleRunnerTransport";
-
 export const heroImages = [
   "/hero-main-show-bg-2.png",
   "/hero-main-show-bg-1.png",
